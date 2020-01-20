@@ -20,12 +20,33 @@ class App extends Component {
     return this.state.wines[idx];
   };
 
+  componentDidMount() {
+    fetch(
+      "https://globalwinescore-global-wine-score-v1.p.rapidapi.com/globalwinescores/latest/?wine_id=89989&limit=100&ordering=-date",
+      {
+        method: "GET",
+        headers: {
+          "x-rapidapi-host":
+            "globalwinescore-global-wine-score-v1.p.rapidapi.com",
+          "x-rapidapi-key":
+            "8488f284c8mshb2d10aec160b79bp14ef40jsn43c2b79185ac",
+          authorization: "Token beef4bd81234e85c6343623eb0da47c5cf55ed65",
+          accept: "application/json"
+        },
+        mode: "cors"
+      }
+    )
+      .then(response => response.json())
+      .then(data => this.setState({ wines: data.results }));
+  }
+
+  /*
+
   async componentDidMount() {
-    console.log("it mounted");
     const wines = await getAllWines();
     console.log("this is the wine", wines);
     this.setState({ wines: wines });
-  }
+  }*/
 
   handleLogout = () => {
     userService.logout();
@@ -74,7 +95,11 @@ class App extends Component {
             )}
           />
         </Switch>
-        <div>wines: {this.state.wines}</div>
+        <div>
+          {this.state.wines.map(wine => (
+            <p key={wine.wine}> {wine.wine}</p>
+          ))}
+        </div>
       </div>
     );
   }
