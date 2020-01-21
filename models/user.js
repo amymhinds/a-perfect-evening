@@ -9,13 +9,13 @@ const userSchema = new mongoose.Schema(
     password: String,
     wines: [
       {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Wine"
       }
     ],
     cheeses: [
       {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Cheese"
       }
     ]

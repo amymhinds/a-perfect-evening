@@ -13,10 +13,10 @@ var wineSchema = new Schema(
       type: String
     },
     score: {
-      type: String
+      type: Number
     },
     regions: {
-      type: String
+      type: [String]
     },
     cheese: [
       {
