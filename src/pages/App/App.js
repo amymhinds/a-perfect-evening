@@ -143,13 +143,40 @@ class App extends Component {
             </label>
             <input type="submit" value="Submit" />
           </form>
-
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Vintage</th>
+                  <th>Type</th>
+                  <th>Regions</th>
+                  <th>Score</th>
+                </tr>
+              </thead>
+              <tbody>
+                {" "}
+                {console.log("this is value" + this.state.value)}
+                {this.state.wines
+                  .filter(wine => wine.wine.includes(this.state.value))
+                  .map(wine => (
+                    <tr>
+                      <td key={wine.id}> wine name {wine.wine}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
           <select id="dropdown">
-            {this.state.wines.map(wine => (
-              <option key={wine.vintage} vale={wine.id}>
-                {wine.wine} + {wine.vintage}
-              </option>
-            ))}
+            {this.state.wines.map(wine =>
+              wine.wine.includes(this.state.value) ? (
+                <option key={wine.id} vale={wine.id}>
+                  {wine.wine} + {wine.vintage}
+                </option>
+              ) : (
+                []
+              )
+            )}
           </select>
           <SelectWineButton
             // updateWineSelection={this.updateWineSelection}
