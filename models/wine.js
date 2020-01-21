@@ -8,7 +8,22 @@ var wineSchema = new Schema(
     },
     type: {
       type: String
-    }
+    },
+    vintage: {
+      type: String
+    },
+    score: {
+      type: String
+    },
+    regions: {
+      type: String
+    },
+    cheese: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Cheese"
+      }
+    ]
   },
   {
     timestamps: true

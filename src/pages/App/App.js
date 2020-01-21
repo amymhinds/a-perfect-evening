@@ -5,24 +5,28 @@ import HomePage from "../HomePage/HomePage";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
-import { getAllWines } from "../../services/wine-api";
+import wineService from "../../utils/wineService";
+import SelectWineButton from "../../components/SelectWineButton/SelectWineButton";
+//import { getAllWines } from "../../services/wine-api";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       user: userService.getUser(),
-      wines: []
+      wines: [],
+      //wine: {},
+      selectedWineName: "",
+      selectedWineType: "",
+      selectedWineVintage: "",
+      selectedWineScore: "",
+      selectedWineRegions: ""
     };
   }
 
-  getWine = idx => {
-    return this.state.wines[idx];
-  };
-
   componentDidMount() {
     fetch(
-      "https://globalwinescore-global-wine-score-v1.p.rapidapi.com/globalwinescores/latest/?wine_id=89989&limit=100&ordering=-date",
+      "https://globalwinescore-global-wine-score-v1.p.rapidapi.com/globalwinescores/latest/?limit=100&ordering=-date",
       {
         method: "GET",
         headers: {
@@ -40,6 +44,25 @@ class App extends Component {
       .then(data => this.setState({ wines: data.results }));
   }
 
+  handleWineSelection = () => {
+    wineService.create({
+      name: this.state.selectedWineName,
+      type: this.state.selectedWineType,
+      vintage: this.state.selectedWineVintage,
+      score: this.state.selectedWineScore,
+      regions: this.state.selectedWineRegions
+    });
+  };
+
+  // updateWineSelection = (Name, Type, Vintage, Score, Regions) => {
+  //   this.setState({
+  //     selectedWineName: Name,
+  //     selectedWineType: Type,
+  //     selectedWineVintage: Vintage,
+  //     selectedWineScore: Score,
+  //     selectedWineRegions: Regions
+  //   });
+  // };
   /*
 
   async componentDidMount() {
@@ -96,9 +119,25 @@ class App extends Component {
           />
         </Switch>
         <div>
-          {this.state.wines.map(wine => (
-            <p key={wine.wine}> {wine.wine}</p>
-          ))}
+          <form>
+            <label>
+              Search by wine name:
+              <input type="text" name="name" />
+            </label>
+            <input type="submit" value="Submit" />
+          </form>
+
+          <select id="dropdown">
+            {this.state.wines.map(wine => (
+              <option key={wine.vintage} vale={wine.id}>
+                {wine.wine} + {wine.vintage}
+              </option>
+            ))}
+          </select>
+          <SelectWineButton
+            // updateWineSelection={this.updateWineSelection}
+            handleWineSelection={this.handleWineSelection}
+          />
         </div>
       </div>
     );

@@ -5,20 +5,14 @@ const BASE_URL =
   "https://api.globalwinescore.com/globalwinescores/latest/?wine=justin/";
 
 module.exports = {
-  getAllWines
+  create
 };
-
-function getAllWines(req, res) {
-  const options = {
-    url: `${BASE_URL}`,
-    headers: {
-      Authorization: "Token beef4bd81234e85c6343623eb0da47c5cf55ed65",
-      Accept: "application/json"
-      //"Access-Control-Allow-Origin": "http://127.0.0.1:3000"
-    }
-  };
-  request(options, (err, response, body) => {
-    let data = JSON.parse(body);
-    console.log("this is the data" + data);
-  });
+async function create(req, res) {
+  console.log(req.user);
+  try {
+    await Wine.create(req.body);
+    // Use the highScores action to return the list
+  } catch (err) {
+    res.json({ err });
+  }
 }
