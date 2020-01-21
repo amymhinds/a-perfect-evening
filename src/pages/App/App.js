@@ -15,6 +15,7 @@ class App extends Component {
     this.state = {
       user: userService.getUser(),
       wines: [],
+      value: "",
       //wine: {},
       selectedWineName: "",
       selectedWineType: "",
@@ -22,6 +23,18 @@ class App extends Component {
       selectedWineScore: "",
       selectedWineRegions: ""
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+  }
+
+  handleSubmit(event) {
+    alert("A name was submitted: " + this.state.value);
+    event.preventDefault();
   }
 
   componentDidMount() {
@@ -119,10 +132,14 @@ class App extends Component {
           />
         </Switch>
         <div>
-          <form>
+          <form onSubmit={this.handleSubmit}>
             <label>
-              Search by wine name:
-              <input type="text" name="name" />
+              Search wine by name:
+              <input
+                type="text"
+                value={this.state.value}
+                onChange={this.handleChange}
+              />
             </label>
             <input type="submit" value="Submit" />
           </form>
