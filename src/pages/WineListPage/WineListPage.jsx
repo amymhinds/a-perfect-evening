@@ -6,7 +6,7 @@ import WineData from "../../components/WineData/WineData";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
-import wineService from "../../utils/wineService";
+// import wineService from "../../utils/wineService";
 import { tsThisType } from "@babel/types";
 
 class WineListPage extends Component {
@@ -26,15 +26,15 @@ class WineListPage extends Component {
   handleAddWine = async newWineData => {
     console.log("NEW WINE ", newWineData);
 
-    const newWine = await wineService.create(newWineData);
-    this.setState(
-      state => ({
-        wineModel: [...state.wineModel, newWine]
-      }),
-      // Using cb to wait for state to update before rerouting
-      () => this.props.history.push("/")
-    );
-    console.log("WINE MODEL ", this.state.wineModel);
+    // const newWine = await userService.udpateUserWines(user);
+    // this.setState(
+    //   state => ({
+    //     wineModel: [...state.wineModel, newWine]
+    //   }),
+    //   // Using cb to wait for state to update before rerouting
+    //   () => this.props.history.push("/")
+    // );
+    // console.log("WINE MODEL ", this.state.wineModel);
     ///add update user wine array---------------------
     const newUser = this.state.user;
     newUser.wines = [...newUser.wines, newWineData];

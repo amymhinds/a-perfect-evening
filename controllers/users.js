@@ -5,18 +5,14 @@ const SECRET = process.env.SECRET;
 module.exports = {
   signup,
   login,
-  updateUserWines
+  updateWines
 };
 
-async function updateUserWines(req, res) {
-  console.log("REQ ID ", req.params.id);
-  console.log("REQ BODY ", req.body);
-  const updatedUserWines = await User.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { new: true }
-  );
-  res.status(200).json(updatedUserWines);
+async function updateWines(req, res) {
+  const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
+    new: true
+  });
+  res.status(200).json(updatedUser);
 }
 
 async function login(req, res) {

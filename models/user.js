@@ -9,8 +9,21 @@ const userSchema = new mongoose.Schema(
     password: String,
     wines: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Wine"
+        name: {
+          type: String
+        },
+        vintage: {
+          type: String
+        },
+        type: {
+          type: String
+        },
+        regions: {
+          type: Array
+        },
+        score: {
+          type: Number
+        }
       }
     ],
     cheeses: [
