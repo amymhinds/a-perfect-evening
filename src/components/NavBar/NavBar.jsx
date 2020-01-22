@@ -5,6 +5,11 @@ import "./NavBar.css";
 const NavBar = props => {
   let nav = props.user ? (
     <div>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <Link to="/" className="NavBar-link">
+        HOME PAGE
+      </Link>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
       <Link to="" className="NavBar-link" onClick={props.handleLogout}>
         LOG OUT
       </Link>

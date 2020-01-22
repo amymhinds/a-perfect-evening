@@ -7,6 +7,7 @@ import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
 import wineService from "../../utils/wineService";
+import { tsThisType } from "@babel/types";
 
 class WineListPage extends Component {
   constructor() {
@@ -33,6 +34,15 @@ class WineListPage extends Component {
       // Using cb to wait for state to update before rerouting
       () => this.props.history.push("/")
     );
+    console.log("WINE MODEL ", this.state.wineModel);
+    ///add update user wine array---------------------
+    const newUser = this.state.user;
+    newUser.wines = [...newUser.wines, newWineData];
+    this.setState({ user: newUser });
+    console.log("USER ", this.state.user);
+    await userService.updateUserWines(this.state.user);
+
+    //-------------------------------------
   };
 
   handleChange(event) {
