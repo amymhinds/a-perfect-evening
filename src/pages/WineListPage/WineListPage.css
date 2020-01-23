@@ -7,6 +7,7 @@
 .WineListPage {
   color: white;
   font-family: "Pacifico", cursive;
+  /* text-align: center; */
 }
 .SearchBar {
   display: flex;
@@ -21,4 +22,14 @@
 }
 .input {
   margin-right: 20px;
+}
+.tableDiv {
+  display: flex;
+  justify-content: center;
+}
+th {
+  font-size: 24px;
+}
+td {
+  padding: 10px;
 }

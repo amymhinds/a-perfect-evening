@@ -8,6 +8,10 @@ import { tsPropertySignature } from "@babel/types";
 const HomePage = props => {
   return (
     <div className="HomePage">
+      <h2 className="phrase">
+        Part of me says I should stop drinking, the other part says don't listen
+        to her, she's drunk.
+      </h2>
       <h1 className="myWines">My Wines</h1>
 
       {props.user.wines.map((wine, idx) => (
@@ -19,17 +23,17 @@ const HomePage = props => {
 
               <h2 className="cheeseTitle">Cheese</h2>
               <div className="cheeseList">
+                <thead>
+                  <th>Name</th>
+                  <th>Rating</th>
+                </thead>
                 {wine.cheeses.map(cheese => (
-                  <div>
-                    <table>
-                      <tbody>
-                        <tr>
-                          <td>Name: {cheese.name}</td>
-                          <td>Rating: {cheese.rating}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
+                  <tbody>
+                    <tr>
+                      <td>{cheese.name}</td>
+                      <td>{cheese.rating}</td>
+                    </tr>
+                  </tbody>
                 ))}
               </div>
             </div>

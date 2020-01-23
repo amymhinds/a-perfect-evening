@@ -7,8 +7,25 @@ export default {
   logout,
   login,
   updateUserWines,
-  addCheeseToWine
+  addCheeseToWine,
+  getWines
 };
+function getWines(wine) {
+  return fetch(
+    `https://globalwinescore-global-wine-score-v1.p.rapidapi.com/globalwinescores/latest/?wine=${wine}&?limit=100&?ordering=-date`,
+    {
+      method: "GET",
+      headers: {
+        "x-rapidapi-host":
+          "globalwinescore-global-wine-score-v1.p.rapidapi.com",
+        "x-rapidapi-key": "8488f284c8mshb2d10aec160b79bp14ef40jsn43c2b79185ac",
+        authorization: "Token beef4bd81234e85c6343623eb0da47c5cf55ed65",
+        accept: "application/json"
+      },
+      mode: "cors"
+    }
+  ).then(response => response.json());
+}
 
 async function addCheeseToWine(user) {
   console.log("service", user);

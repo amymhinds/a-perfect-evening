@@ -3,6 +3,12 @@
   color: black;
   margin-left: 5rem;
 }
+.phrase {
+  color: black;
+  text-align: center;
+  font-family: "Pacifico", cursive;
+}
+
 .myWines {
   font-family: "Pacifico", cursive;
   color: white;
@@ -45,4 +51,7 @@
   margin-right: 10rem;
   margin-left: 10rem;
   border-radius: 1rem;
+}
+thead {
+  font-size: 10px;
 }

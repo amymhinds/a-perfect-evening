@@ -32,15 +32,18 @@ class WineListPage extends Component {
   }
 
   handleSubmit(event) {
-    this.setState({ value: event.target.value });
+    this.setState({ value: event.target.value, isLoading: true });
     // alert("A name was submitted: " + this.state.value);
     event.preventDefault();
+    userService
+      .getWines(this.state.value)
+      .then(res => this.setState({ wines: res.results, isLoading: false }));
   }
   /*limit parameter limits num of wines */
 
   componentDidMount() {
     fetch(
-      `https://globalwinescore-global-wine-score-v1.p.rapidapi.com/globalwinescores/latest/?wine=${this.state.value}&?limit=100&?ordering=-date`,
+      `https://globalwinescore-global-wine-score-v1.p.rapidapi.com/globalwinescores/latest/?limit=100&?ordering=-date`,
       {
         method: "GET",
         headers: {
@@ -75,7 +78,9 @@ class WineListPage extends Component {
     return (
       <div>
         {this.state.isLoading ? (
-          <div className="loading">L O A D I N G. . . </div>
+          <div className="loading">
+            L O A D I N G. . . PLEASE WAIT. REMEMBER, THE BEST WINE IS AGED.
+          </div>
         ) : (
           <div className="WineListPage">
             <div className="SearchBar">
@@ -91,21 +96,19 @@ class WineListPage extends Component {
                 <input type="submit" classNamee="submit" value="Submit" />
               </form>
             </div>
-            <div>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Vintage</th>
-                    <th>Type</th>
-                    <th>Regions</th>
-                    <th>Score</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.state.wines
-                    .filter(wine => wine.wine.includes(this.state.value))
-                    .map(wine => (
+            <div className="tableDiv">
+              <div className="container">
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Vintage</th>
+                      <th>Regions</th>
+                      <th>Score</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {this.state.wines.map(wine => (
                       <WineData
                         name={wine.wine}
                         vintage={wine.vintage}
@@ -115,8 +118,9 @@ class WineListPage extends Component {
                         handleAddWine={this.props.handleAddWine}
                       />
                     ))}
-                </tbody>
-              </table>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         )}
