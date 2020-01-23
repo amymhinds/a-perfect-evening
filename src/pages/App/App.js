@@ -5,6 +5,7 @@ import HomePage from "../HomePage/HomePage";
 import SignupPage from "../SignupPage/SignupPage";
 import WineListPage from "../WineListPage/WineListPage";
 import LoginPage from "../LoginPage/LoginPage";
+import PairingsPage from "../PairingsPage/PairingsPage";
 import NavBar from "../../components/NavBar/NavBar";
 import userService from "../../utils/userService";
 
@@ -87,6 +88,11 @@ class App extends Component {
         </header>
         <NavBar user={this.state.user} handleLogout={this.handleLogout} />
         <Switch>
+          <Route
+            exact
+            path="/guide"
+            render={({ history }) => <PairingsPage history={history} />}
+          />
           <Route
             exact
             path="/home"

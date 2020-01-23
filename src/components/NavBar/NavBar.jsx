@@ -5,6 +5,10 @@ import "./NavBar.css";
 const NavBar = props => {
   let nav = props.user ? (
     <div>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <Link to="/guide" className="NavBar-link">
+        PAIRINGS GUIDE
+      </Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;
       <Link to="/home" className="NavBar-link">
         WINE DIARY

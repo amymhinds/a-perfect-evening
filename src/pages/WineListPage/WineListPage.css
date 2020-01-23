@@ -1,0 +1,24 @@
+.loading {
+  margin-top: 10rem;
+  text-align: center;
+  color: white;
+  font-size: 24px;
+}
+.WineListPage {
+  color: white;
+  font-family: "Pacifico", cursive;
+}
+.SearchBar {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+.label {
+  margin-right: 30px;
+  /* font-weight: bold; */
+  font-size: 25px;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New";
+}
+.input {
+  margin-right: 20px;
+}

@@ -6,6 +6,7 @@ import WineData from "../../components/WineData/WineData";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
+import "./WineListPage.css";
 // import wineService from "../../utils/wineService";
 import { tsThisType } from "@babel/types";
 
@@ -16,7 +17,8 @@ class WineListPage extends Component {
       //user: userService.getUser(),
       wines: [],
       wineModel: [],
-      value: ""
+      value: "",
+      isLoading: true
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -34,6 +36,7 @@ class WineListPage extends Component {
     event.preventDefault();
   }
   /*limit parameter limits num of wines */
+
   componentDidMount() {
     fetch(
       `https://globalwinescore-global-wine-score-v1.p.rapidapi.com/globalwinescores/latest/?limit=100&?ordering=-date`,
@@ -54,6 +57,7 @@ class WineListPage extends Component {
       .then(data => {
         console.log("DATA ", data.results);
         this.setState({ wines: data.results });
+        this.setState({ isLoading: false });
       });
   }
 
@@ -69,46 +73,52 @@ class WineListPage extends Component {
   render() {
     return (
       <div>
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              Search wine by name:
-              <input
-                type="text"
-                value={this.state.value}
-                onChange={this.handleChange}
-              />
-            </label>
-            <input type="submit" value="Submit" />
-          </form>
-          <div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Vintage</th>
-                  <th>Type</th>
-                  <th>Regions</th>
-                  <th>Score</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.wines
-                  .filter(wine => wine.wine.includes(this.state.value))
-                  .map(wine => (
-                    <WineData
-                      name={wine.wine}
-                      vintage={wine.vintage}
-                      type={wine.type}
-                      regions={wine.regions}
-                      score={wine.score}
-                      handleAddWine={this.props.handleAddWine}
-                    />
-                  ))}
-              </tbody>
-            </table>
+        {this.state.isLoading ? (
+          <div className="loading">L O A D I N G. . . </div>
+        ) : (
+          <div className="WineListPage">
+            <div className="SearchBar">
+              <form onSubmit={this.handleSubmit}>
+                <label className="label">SEARCH WINE BY NAME :</label>
+                <input
+                  className="input"
+                  type="text"
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                />
+
+                <input type="submit" classNamee="submit" value="Submit" />
+              </form>
+            </div>
+            <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Vintage</th>
+                    <th>Type</th>
+                    <th>Regions</th>
+                    <th>Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.wines
+                    .filter(wine => wine.wine.includes(this.state.value))
+                    .map(wine => (
+                      <WineData
+                        name={wine.wine}
+                        vintage={wine.vintage}
+                        type={wine.type}
+                        regions={wine.regions}
+                        score={wine.score}
+                        handleAddWine={this.props.handleAddWine}
+                      />
+                    ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     );
   }

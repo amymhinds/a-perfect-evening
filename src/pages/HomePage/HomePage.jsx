@@ -14,8 +14,9 @@ const HomePage = props => {
         <div className="block">
           <h1 className="wineTitle">Wine</h1>
           {wine.cheeses && wine.cheeses.length > 0 ? (
-            <div className="wineName">
-              {wine.name}
+            <div>
+              <div className="wineName"> {wine.name}</div>
+
               <h2 className="cheeseTitle">Cheese</h2>
               <div className="cheeseList">
                 {wine.cheeses.map(cheese => (
@@ -33,7 +34,7 @@ const HomePage = props => {
               </div>
             </div>
           ) : (
-            <div>{wine.name}</div>
+            <div className="wineName">{wine.name}</div>
           )}
           <form
             className="form-horizontal"
@@ -53,7 +54,7 @@ const HomePage = props => {
               onChange={props.handleCheeseChange}
               name="cheeseRating"
             />
-            <button type="submit">Submit</button>
+            <button type="submit">Add Cheese</button>
           </form>
         </div>
       ))}
