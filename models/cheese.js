@@ -6,7 +6,7 @@ var cheeseSchema = new Schema(
     name: {
       type: String
     },
-    type: {
+    rating: {
       type: String
     }
   },

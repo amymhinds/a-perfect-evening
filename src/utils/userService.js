@@ -6,8 +6,17 @@ export default {
   getUser,
   logout,
   login,
-  updateUserWines
+  updateUserWines,
+  addCheeseToWine
 };
+
+function addCheeseToWine(idx, user, cheese) {
+  return fetch(`${BASE_URL}${user._id}/${idx}`, {
+    method: "PUT",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(cheese)
+  }).then(res => res.json());
+}
 
 function updateUserWines(user) {
   return fetch(`${BASE_URL}${user._id}`, {

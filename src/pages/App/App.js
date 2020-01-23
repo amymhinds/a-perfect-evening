@@ -5,8 +5,8 @@ import HomePage from "../HomePage/HomePage";
 import SignupPage from "../SignupPage/SignupPage";
 import WineListPage from "../WineListPage/WineListPage";
 import LoginPage from "../LoginPage/LoginPage";
+import NavBar from "../../components/NavBar/NavBar";
 import userService from "../../utils/userService";
-import wineService from "../../utils/wineService";
 
 //import { getAllWines } from "../../services/wine-api";
 
@@ -15,18 +15,39 @@ class App extends Component {
     super();
     this.state = {
       user: userService.getUser(),
-      wines: [],
       value: "",
-      //wine: {},
-      formData: {
-        selectedWineName: "",
-        selectedWineType: "",
-        selectedWineVintage: "",
-        selectedWineScore: "",
-        selectedWineRegions: ""
+      cheeseData: {
+        name: "",
+        rating: ""
       }
     };
   }
+
+  handleAddWine = async newWineData => {
+    console.log("NEW WINE ", newWineData);
+    const newUser = this.state.user;
+    newUser.wines = [...newUser.wines, newWineData];
+
+    console.log("USER ", this.state.user);
+    await userService.updateUserWines(this.state.user);
+    this.setState({ user: newUser });
+    //-------------------------------------
+  };
+
+  handleAddCheese = async newCheeseData => {
+    const newUser = this.state.user;
+    newUser.wines.wine.cheeses = [
+      ...newUser.wines.wine.cheeses,
+      newUser.wine.wine.newCheeseData
+    ];
+    //-------------------------------------
+  };
+
+  handleCheeseChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
 
   handleLogout = () => {
     userService.logout();
@@ -43,6 +64,7 @@ class App extends Component {
         <header className="header-footer">
           A &nbsp;&nbsp;&nbsp; P E R F E C T&nbsp;&nbsp;&nbsp; E V E N I N G
         </header>
+        <NavBar user={this.state.user} handleLogout={this.state.handleLogout} />
         <Switch>
           <Route
             exact
@@ -51,6 +73,9 @@ class App extends Component {
               <HomePage
                 user={this.state.user}
                 handleLogout={this.handleLogout}
+                cheeseData={this.state.cheeseData}
+                handleAddCheese={this.handleAddCheese}
+                handleCheeseChange={this.handleCheeseChange}
               />
             )}
           />
@@ -71,13 +96,20 @@ class App extends Component {
               <LoginPage
                 history={history}
                 handleSignupOrLogin={this.handleSignupOrLogin}
+                handleUpdateUser={this.handleUpdateUser}
               />
             )}
           />
           <Route
             exact
             path="/winelist"
-            render={({ history }) => <WineListPage history={history} />}
+            render={({ history }) => (
+              <WineListPage
+                user={this.state.user}
+                history={history}
+                handleAddWine={this.handleAddWine}
+              />
+            )}
           />
         </Switch>
       </div>

@@ -13,7 +13,7 @@ class WineListPage extends Component {
   constructor() {
     super();
     this.state = {
-      user: userService.getUser(),
+      //user: userService.getUser(),
       wines: [],
       wineModel: [],
       value: ""
@@ -22,28 +22,6 @@ class WineListPage extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  handleAddWine = async newWineData => {
-    console.log("NEW WINE ", newWineData);
-
-    // const newWine = await userService.udpateUserWines(user);
-    // this.setState(
-    //   state => ({
-    //     wineModel: [...state.wineModel, newWine]
-    //   }),
-    //   // Using cb to wait for state to update before rerouting
-    //   () => this.props.history.push("/")
-    // );
-    // console.log("WINE MODEL ", this.state.wineModel);
-    ///add update user wine array---------------------
-    const newUser = this.state.user;
-    newUser.wines = [...newUser.wines, newWineData];
-    this.setState({ user: newUser });
-    console.log("USER ", this.state.user);
-    await userService.updateUserWines(this.state.user);
-
-    //-------------------------------------
-  };
 
   handleChange(event) {
     this.setState({ value: event.target.value });
@@ -94,39 +72,7 @@ class WineListPage extends Component {
         <header className="header-footer">
           A &nbsp;&nbsp;&nbsp; P E R F E C T&nbsp;&nbsp;&nbsp; E V E N I N G
         </header>
-        <NavBar user={this.state.user} handleLogout={this.state.handleLogout} />
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <HomePage
-                user={this.state.user}
-                handleLogout={this.handleLogout}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/signup"
-            render={({ history }) => (
-              <SignupPage
-                history={history}
-                handleSignupOrLogin={this.handleSignupOrLogin}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/login"
-            render={({ history }) => (
-              <LoginPage
-                history={history}
-                handleSignupOrLogin={this.handleSignupOrLogin}
-              />
-            )}
-          />
-        </Switch>
+
         <div>
           <form onSubmit={this.handleSubmit}>
             <label>
@@ -160,7 +106,7 @@ class WineListPage extends Component {
                       type={wine.type}
                       regions={wine.regions}
                       score={wine.score}
-                      handleAddWine={this.handleAddWine}
+                      handleAddWine={this.props.handleAddWine}
                     />
                   ))}
               </tbody>

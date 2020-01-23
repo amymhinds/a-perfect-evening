@@ -9,27 +9,11 @@ const userSchema = new mongoose.Schema(
     password: String,
     wines: [
       {
-        name: {
-          type: String
-        },
-        vintage: {
-          type: String
-        },
-        type: {
-          type: String
-        },
-        regions: {
-          type: Array
-        },
-        score: {
-          type: Number
-        }
-      }
-    ],
-    cheeses: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Cheese"
+        name: String,
+        vintage: String,
+        regions: Array,
+        score: Number,
+        cheeses: []
       }
     ]
   },
