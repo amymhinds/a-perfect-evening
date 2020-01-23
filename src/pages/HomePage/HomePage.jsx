@@ -20,30 +20,30 @@ const HomePage = props => {
               name: {cheese.rating}
             </div>
           ))}
-          {wine.cheeses.map(cheese => (
-            <div>
-              <form
-                className="form-horizontal"
-                onSubmit={userService.addCheeseToWine(idx, props.user, {
-                  name: "name",
-                  rating: "rating"
-                })}
-              ></form>
-              >
-              <input
-                type="text"
-                className="form-control"
-                value="name"
-                name="name"
-              />
-              <input
-                type="text"
-                className="form-control"
-                value="rating"
-                name="rating"
-              />
-            </div>
+          <div>
+            <form
+              className="form-horizontal"
+              onSubmit={userService.addCheeseToWine(idx, props.user, {
+                name: "name",
+                rating: "rating"
+              })}
+            ></form>
+            >
+            <input
+              type="text"
+              className="form-control"
+              value="name"
+              name="name"
+            />
+            <input
+              type="text"
+              className="form-control"
+              value="rating"
+              name="rating"
+            />
+          </div>
           ))}
+          <button type="submit">Submit</button>{" "}
         </div>
       ))}
     </div>
