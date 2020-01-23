@@ -6,44 +6,44 @@ import "./HomePage.css";
 import { tsPropertySignature } from "@babel/types";
 
 const HomePage = props => {
-  console.log("user wines ", props.user);
+  console.log("cheeseeee", props.cheeseName);
   return (
     <div className="HomePage">
       <NavBar user={props.user} handleLogout={props.handleLogout} />
       <h1>My Wines</h1>
       {props.user.wines.map((wine, idx) => (
         <div>
-          {wine.name}
-          {wine.cheeses.map(cheese => (
+          {wine.cheeses && wine.cheeses.length > 0 ? (
             <div>
-              name: {cheese.name}
-              name: {cheese.rating}
+              {wine.name}
+              {wine.cheeses.map(cheese => (
+                <div>
+                  name: {cheese.name}
+                  name: {cheese.rating}
+                </div>
+              ))}
             </div>
-          ))}
-          <div>
-            <form
-              className="form-horizontal"
-              onSubmit={userService.addCheeseToWine(idx, props.user, {
-                name: "name",
-                rating: "rating"
-              })}
-            ></form>
-            >
+          ) : (
+            <div>{wine.name}</div>
+          )}
+          <form
+            className="form-horizontal"
+            onSubmit={() => props.handleAddCheese(idx)}
+          >
             <input
               type="text"
               className="form-control"
-              value="name"
-              name="name"
+              onChange={props.handleCheeseChange}
+              name="cheeseName"
             />
             <input
               type="text"
               className="form-control"
-              value="rating"
-              name="rating"
+              onChange={props.handleCheeseChange}
+              name="cheeseRating"
             />
-          </div>
-          ))}
-          <button type="submit">Submit</button>{" "}
+            <button type="submit">Submit</button>
+          </form>
         </div>
       ))}
     </div>

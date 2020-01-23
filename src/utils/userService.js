@@ -10,11 +10,13 @@ export default {
   addCheeseToWine
 };
 
-function addCheeseToWine(idx, user, cheese) {
-  return fetch(`${BASE_URL}${user._id}/${idx}`, {
+async function addCheeseToWine(user) {
+  console.log("service", user);
+
+  return await fetch(`${BASE_URL}${user._id}`, {
     method: "PUT",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify(cheese)
+    body: JSON.stringify(user)
   }).then(res => res.json());
 }
 

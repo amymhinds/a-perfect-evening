@@ -24,6 +24,13 @@ function updateUserWines(req, res) {
   });
 }
 
+function addCheeseToWine(req, res) {
+  User.findByIdAndUpdate(req.params.id, req.body, function(err, updatedUser) {
+    if (err) console.log(err);
+    res.status(200).json(updatedUser);
+  });
+}
+
 async function login(req, res) {
   try {
     const user = await User.findOne({ email: req.body.email });
@@ -52,17 +59,16 @@ async function signup(req, res) {
     res.status(400).json(err);
   }
 }
-
-function addCheeseToWine(req, res) {
-  User.findById(req.params.id, function(err, user) {
-    if (err) console.log(err);
-    console.log(req.body);
-    user.wines[req.params.wId].cheeses.push(req.body);
-    user.save(function(err) {
-      res.send({ message: "yoloswag" });
-    });
-  });
-}
+// function addCheeseToWine(req, res) {
+//   User.findById(req.params.id, function(err, user) {
+//     if (err) console.log(err);
+//     console.log(req.body);
+//     user.wines[req.params.wId].cheeses.push(req.body);
+//     user.save(function(err) {
+//       res.send({ message: req.body });
+//     });
+//   });
+// }
 
 /*--- helper functions ---*/
 

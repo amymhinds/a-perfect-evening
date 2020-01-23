@@ -16,12 +16,26 @@ class App extends Component {
     this.state = {
       user: userService.getUser(),
       value: "",
-      cheeseData: {
-        name: "",
-        rating: ""
-      }
+      cheeseName: "",
+      cheeseRating: ""
     };
   }
+
+  handleAddCheese = async idx => {
+    console.log("index", idx);
+
+    const newUser = this.state.user;
+
+    newUser.wines[idx].cheeses = [
+      ...newUser.wines[idx].cheeses,
+      { name: this.state.cheeseName, rating: this.state.cheeseRating }
+    ];
+
+    //console.log("USER ", this.state.user);
+    await userService.addCheeseToWine(this.state.user);
+    this.setState({ user: newUser });
+    //-------------------------------------
+  };
 
   handleAddWine = async newWineData => {
     console.log("NEW WINE ", newWineData);
@@ -34,19 +48,11 @@ class App extends Component {
     //-------------------------------------
   };
 
-  handleAddCheese = async newCheeseData => {
-    const newUser = this.state.user;
-    newUser.wines.wine.cheeses = [
-      ...newUser.wines.wine.cheeses,
-      newUser.wine.wine.newCheeseData
-    ];
-    //-------------------------------------
-  };
-
   handleCheeseChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
+    console.log("state ", this.state);
   };
 
   handleLogout = () => {
@@ -73,9 +79,10 @@ class App extends Component {
               <HomePage
                 user={this.state.user}
                 handleLogout={this.handleLogout}
-                cheeseData={this.state.cheeseData}
-                handleAddCheese={this.handleAddCheese}
+                cheeseName={this.state.cheeseName}
+                cheeseRating={this.state.cheeseRating}
                 handleCheeseChange={this.handleCheeseChange}
+                handleAddCheese={this.handleAddCheese}
               />
             )}
           />
