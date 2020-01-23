@@ -9,7 +9,6 @@ const HomePage = props => {
   console.log("cheeseeee", props.cheeseName);
   return (
     <div className="HomePage">
-      <NavBar user={props.user} handleLogout={props.handleLogout} />
       <h1>My Wines</h1>
       {props.user.wines.map((wine, idx) => (
         <div>
