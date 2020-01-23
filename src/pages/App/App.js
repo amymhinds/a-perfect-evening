@@ -18,8 +18,20 @@ class App extends Component {
       value: "",
       cheeseName: "",
       cheeseRating: ""
+      // redirect: false
     };
   }
+  /*
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    });
+  };*/
+  // renderRedirect = () => {
+  //   if (this.state.redirect) {
+  //     return <Redirect to="/login" />;
+  //   }
+  // };
 
   handleAddCheese = async idx => {
     console.log("index", idx);
@@ -58,6 +70,9 @@ class App extends Component {
   handleLogout = () => {
     userService.logout();
     this.setState({ user: null });
+    this.setState({
+      redirect: true
+    });
   };
 
   handleSignupOrLogin = () => {
@@ -74,7 +89,7 @@ class App extends Component {
         <Switch>
           <Route
             exact
-            path="/"
+            path="/home"
             render={() => (
               <HomePage
                 user={this.state.user}

@@ -1,6 +1,6 @@
 .wineTitle {
   font-family: "Pacifico", cursive;
-  color: white;
+  color: black;
   margin-left: 5rem;
 }
 .myWines {
@@ -10,17 +10,17 @@
 }
 .cheeseTitle {
   font-family: "Pacifico", cursive;
-  color: white;
+  color: black;
   margin-left: 15rem;
 }
 .cheeseList {
   font-family: "Pacifico", cursive;
-  color: white;
+  color: black;
   margin-left: 17rem;
 }
 .wineName {
   font-family: "Pacifico", cursive;
-  color: white;
+  color: black;
   margin-left: 5rem;
   font-size: 20px;
 }
@@ -29,7 +29,7 @@
 }
 .name,
 .rating {
-  color: white;
+  color: black;
   font-family: "Pacifico", cursive;
 }
 .form-horizontal {
@@ -38,4 +38,11 @@
 .HomePage {
   color: white;
   font-family: "Pacifico", cursive;
+}
+.block {
+  background-color: wheat;
+  margin: auto;
+  margin-right: 10rem;
+  margin-left: 10rem;
+  border-radius: 1rem;
 }

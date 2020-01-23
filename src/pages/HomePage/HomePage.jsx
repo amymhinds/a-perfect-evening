@@ -6,13 +6,12 @@ import "./HomePage.css";
 import { tsPropertySignature } from "@babel/types";
 
 const HomePage = props => {
-  console.log("cheeseeee", props.cheeseName);
   return (
     <div className="HomePage">
       <h1 className="myWines">My Wines</h1>
 
       {props.user.wines.map((wine, idx) => (
-        <div>
+        <div className="block">
           <h1 className="wineTitle">Wine</h1>
           {wine.cheeses && wine.cheeses.length > 0 ? (
             <div className="wineName">
@@ -22,14 +21,10 @@ const HomePage = props => {
                 {wine.cheeses.map(cheese => (
                   <div>
                     <table>
-                      <th>Cheese</th>
-                      <th>Rating</th>
-
                       <tbody>
                         <tr>
-                          {" "}
-                          <td>{cheese.name}</td>
-                          <td>{cheese.rating}</td>
+                          <td>Name: {cheese.name}</td>
+                          <td>Rating: {cheese.rating}</td>
                         </tr>
                       </tbody>
                     </table>
