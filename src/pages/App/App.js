@@ -67,7 +67,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        meow
         <header className="header-footer">
           A &nbsp;&nbsp;&nbsp; P E R F E C T&nbsp;&nbsp;&nbsp; E V E N I N G
         </header>

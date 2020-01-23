@@ -5,7 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url(https://imgur.com/hleXxxN.png);
+  /* background-image: url(https://imgur.com/hleXxxN.png); */
+  background-color: maroon;
   background-size: cover;
 }
 

@@ -9,18 +9,33 @@ const HomePage = props => {
   console.log("cheeseeee", props.cheeseName);
   return (
     <div className="HomePage">
-      <h1>My Wines</h1>
+      <h1 className="myWines">My Wines</h1>
+
       {props.user.wines.map((wine, idx) => (
         <div>
+          <h1 className="wineTitle">Wine</h1>
           {wine.cheeses && wine.cheeses.length > 0 ? (
-            <div>
+            <div className="wineName">
               {wine.name}
-              {wine.cheeses.map(cheese => (
-                <div>
-                  name: {cheese.name}
-                  name: {cheese.rating}
-                </div>
-              ))}
+              <h2 className="cheeseTitle">Cheese</h2>
+              <div className="cheeseList">
+                {wine.cheeses.map(cheese => (
+                  <div>
+                    <table>
+                      <th>Cheese</th>
+                      <th>Rating</th>
+
+                      <tbody>
+                        <tr>
+                          {" "}
+                          <td>{cheese.name}</td>
+                          <td>{cheese.rating}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                ))}
+              </div>
             </div>
           ) : (
             <div>{wine.name}</div>
@@ -29,12 +44,14 @@ const HomePage = props => {
             className="form-horizontal"
             onSubmit={() => props.handleAddCheese(idx)}
           >
+            <label className="name">Name</label>
             <input
               type="text"
               className="form-control"
               onChange={props.handleCheeseChange}
               name="cheeseName"
             />
+            <label className="rating">Rating</label>
             <input
               type="text"
               className="form-control"

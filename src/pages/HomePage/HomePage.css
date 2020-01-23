@@ -1,0 +1,41 @@
+.wineTitle {
+  font-family: "Pacifico", cursive;
+  color: white;
+  margin-left: 5rem;
+}
+.myWines {
+  font-family: "Pacifico", cursive;
+  color: white;
+  text-align: center;
+}
+.cheeseTitle {
+  font-family: "Pacifico", cursive;
+  color: white;
+  margin-left: 15rem;
+}
+.cheeseList {
+  font-family: "Pacifico", cursive;
+  color: white;
+  margin-left: 17rem;
+}
+.wineName {
+  font-family: "Pacifico", cursive;
+  color: white;
+  margin-left: 5rem;
+  font-size: 20px;
+}
+.form-control {
+  margin: 2rem;
+}
+.name,
+.rating {
+  color: white;
+  font-family: "Pacifico", cursive;
+}
+.form-horizontal {
+  text-align: center;
+}
+.HomePage {
+  color: white;
+  font-family: "Pacifico", cursive;
+}
