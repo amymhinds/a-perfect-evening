@@ -18,15 +18,24 @@ module.exports = {
 //}
 
 function updateUserWines(req, res) {
-  User.findByIdAndUpdate(req.params.id, req.body, function(err, updatedUser) {
+  User.findByIdAndUpdate(req.params.id, req.body, { new: true }, function(
+    err,
+    updatedUser
+  ) {
     if (err) console.log(err);
+    console.log("we are doing something on the wrong route");
     res.status(200).json(updatedUser);
   });
 }
 
 function addCheeseToWine(req, res) {
-  User.findByIdAndUpdate(req.params.id, req.body, function(err, updatedUser) {
+  console.log("we are doing something");
+  User.findByIdAndUpdate(req.params.id, req.body, { new: true }, function(
+    err,
+    updatedUser
+  ) {
     if (err) console.log(err);
+    console.log("hello world!", updatedUser);
     res.status(200).json(updatedUser);
   });
 }

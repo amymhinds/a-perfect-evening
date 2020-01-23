@@ -38,7 +38,7 @@ const HomePage = props => {
           )}
           <form
             className="form-horizontal"
-            onSubmit={() => props.handleAddCheese(idx)}
+            onSubmit={evt => props.handleAddCheese(idx, evt)}
           >
             <label className="name">Name</label>
             <input

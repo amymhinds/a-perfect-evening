@@ -34,9 +34,9 @@ class App extends Component {
   //   }
   // };
 
-  handleAddCheese = async idx => {
-    console.log("index", idx);
-
+  handleAddCheese = async (idx, evt) => {
+    evt.preventDefault();
+    console.log("idx", idx);
     const newUser = this.state.user;
 
     newUser.wines[idx].cheeses = [
@@ -45,8 +45,8 @@ class App extends Component {
     ];
 
     //console.log("USER ", this.state.user);
-    await userService.addCheeseToWine(this.state.user);
-    this.setState({ user: newUser });
+    let response = await userService.addCheeseToWine(newUser);
+    this.setState({ user: response });
     //-------------------------------------
   };
 

@@ -18,6 +18,7 @@ class WineListPage extends Component {
       wines: [],
       wineModel: [],
       value: "",
+      //newValue: "justin",
       isLoading: true
     };
 
@@ -32,14 +33,14 @@ class WineListPage extends Component {
 
   handleSubmit(event) {
     this.setState({ value: event.target.value });
-    alert("A name was submitted: " + this.state.value);
+    // alert("A name was submitted: " + this.state.value);
     event.preventDefault();
   }
   /*limit parameter limits num of wines */
 
   componentDidMount() {
     fetch(
-      `https://globalwinescore-global-wine-score-v1.p.rapidapi.com/globalwinescores/latest/?limit=100&?ordering=-date`,
+      `https://globalwinescore-global-wine-score-v1.p.rapidapi.com/globalwinescores/latest/?wine=${this.state.value}&?limit=100&?ordering=-date`,
       {
         method: "GET",
         headers: {
