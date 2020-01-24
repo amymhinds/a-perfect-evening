@@ -37,7 +37,12 @@ class App extends Component {
   handleAddCheese = async (idx, evt) => {
     evt.preventDefault();
     console.log("idx", idx);
+
     const newUser = this.state.user;
+    console.log(newUser);
+    if (newUser.wines.cheeses) {
+      console.log("help me");
+    }
 
     newUser.wines[idx].cheeses = [
       ...newUser.wines[idx].cheeses,

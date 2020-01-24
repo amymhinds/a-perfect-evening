@@ -16,7 +16,8 @@ const WineData = props => (
             vintage: props.vintage,
             type: props.type,
             regions: props.regions,
-            score: props.score
+            score: props.score,
+            cheeses: props.cheese
           })
         }
       >

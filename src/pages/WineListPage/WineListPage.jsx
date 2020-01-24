@@ -19,7 +19,8 @@ class WineListPage extends Component {
       wineModel: [],
       value: "",
       //newValue: "justin",
-      isLoading: true
+      isLoading: true,
+      cheese: []
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -116,6 +117,7 @@ class WineListPage extends Component {
                         regions={wine.regions}
                         score={wine.score}
                         handleAddWine={this.props.handleAddWine}
+                        cheese={this.state.cheese}
                       />
                     ))}
                   </tbody>
