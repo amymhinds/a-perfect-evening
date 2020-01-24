@@ -23,18 +23,20 @@ const HomePage = props => {
 
               <h2 className="cheeseTitle">Cheese</h2>
               <div className="cheeseList">
-                <thead>
-                  <th>Name</th>
-                  <th>Rating</th>
-                </thead>
-                {wine.cheeses.map(cheese => (
-                  <tbody>
-                    <tr>
-                      <td>{cheese.name}</td>
-                      <td>{cheese.rating}</td>
-                    </tr>
-                  </tbody>
-                ))}
+                <table>
+                  <thead className="cheeseTableHead">
+                    <th className="cheeseTableHead">Name</th>
+                    <th className="cheeseTableHead">Rating</th>
+                  </thead>
+                  {wine.cheeses.map(cheese => (
+                    <tbody>
+                      <tr>
+                        <td className="tdCheese">{cheese.name}</td>
+                        <td className="tdCheese">{cheese.rating}</td>
+                      </tr>
+                    </tbody>
+                  ))}
+                </table>
               </div>
             </div>
           ) : (

@@ -9,8 +9,6 @@ import PairingsPage from "../PairingsPage/PairingsPage";
 import NavBar from "../../components/NavBar/NavBar";
 import userService from "../../utils/userService";
 
-//import { getAllWines } from "../../services/wine-api";
-
 class App extends Component {
   constructor() {
     super();
@@ -19,50 +17,31 @@ class App extends Component {
       value: "",
       cheeseName: "",
       cheeseRating: ""
-      // redirect: false
     };
   }
-  /*
-  setRedirect = () => {
-    this.setState({
-      redirect: true
-    });
-  };*/
-  // renderRedirect = () => {
-  //   if (this.state.redirect) {
-  //     return <Redirect to="/login" />;
-  //   }
-  // };
 
   handleAddCheese = async (idx, evt) => {
     evt.preventDefault();
-    console.log("idx", idx);
-
     const newUser = this.state.user;
-    console.log(newUser);
-    if (newUser.wines.cheeses) {
-      console.log("help me");
-    }
-
     newUser.wines[idx].cheeses = [
       ...newUser.wines[idx].cheeses,
       { name: this.state.cheeseName, rating: this.state.cheeseRating }
     ];
 
-    //console.log("USER ", this.state.user);
     let response = await userService.addCheeseToWine(newUser);
     this.setState({ user: response });
     //-------------------------------------
   };
 
   handleAddWine = async newWineData => {
-    console.log("NEW WINE ", newWineData);
     const newUser = this.state.user;
     newUser.wines = [...newUser.wines, newWineData];
-
-    console.log("USER ", this.state.user);
     await userService.updateUserWines(this.state.user);
-    this.setState({ user: newUser });
+    this.setState(
+      state => ({ user: newUser }),
+      () => this.props.history.push("/home")
+    );
+
     //-------------------------------------
   };
 

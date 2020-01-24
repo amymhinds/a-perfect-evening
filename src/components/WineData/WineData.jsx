@@ -5,7 +5,6 @@ const WineData = props => (
   <tr>
     <td>{props.name}</td>
     <td>{props.vintage}</td>
-
     <td>{props.regions}</td>
     <td>{props.score}</td>
     <td>

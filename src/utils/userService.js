@@ -28,8 +28,6 @@ function getWines(wine) {
 }
 
 async function addCheeseToWine(user) {
-  console.log("service", user);
-
   return await fetch(`${BASE_URL}${user._id}`, {
     method: "PUT",
     headers: { "content-type": "application/json" },

@@ -33,3 +33,8 @@ th {
 td {
   padding: 10px;
 }
+.loadingPic {
+  margin-top: 5rem;
+  height: 15rem;
+  width: 25rem;
+}

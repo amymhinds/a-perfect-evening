@@ -1,24 +1,15 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
-import NavBar from "../../components/NavBar/NavBar";
-import HomePage from "../HomePage/HomePage";
 import WineData from "../../components/WineData/WineData";
-import SignupPage from "../SignupPage/SignupPage";
-import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
 import "./WineListPage.css";
-// import wineService from "../../utils/wineService";
-import { tsThisType } from "@babel/types";
 
 class WineListPage extends Component {
   constructor() {
     super();
     this.state = {
-      //user: userService.getUser(),
       wines: [],
       wineModel: [],
       value: "",
-      //newValue: "justin",
       isLoading: true,
       cheese: []
     };
@@ -29,7 +20,6 @@ class WineListPage extends Component {
 
   handleChange(event) {
     this.setState({ value: event.target.value });
-    console.log("value ", event.target.value);
   }
 
   handleSubmit(event) {
@@ -60,7 +50,6 @@ class WineListPage extends Component {
     )
       .then(response => response.json())
       .then(data => {
-        console.log("DATA ", data.results);
         this.setState({ wines: data.results });
         this.setState({ isLoading: false });
       });
@@ -81,6 +70,11 @@ class WineListPage extends Component {
         {this.state.isLoading ? (
           <div className="loading">
             L O A D I N G. . . PLEASE WAIT. REMEMBER, THE BEST WINE IS AGED.
+            <img
+              className="loadingPic"
+              src="https://media.giphy.com/media/12u04vnKK6XY9q/giphy.gif"
+              alt=""
+            />
           </div>
         ) : (
           <div className="WineListPage">
