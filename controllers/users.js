@@ -68,16 +68,6 @@ async function signup(req, res) {
     res.status(400).json(err);
   }
 }
-// function addCheeseToWine(req, res) {
-//   User.findById(req.params.id, function(err, user) {
-//     if (err) console.log(err);
-//     console.log(req.body);
-//     user.wines[req.params.wId].cheeses.push(req.body);
-//     user.save(function(err) {
-//       res.send({ message: req.body });
-//     });
-//   });
-// }
 
 /*--- helper functions ---*/
 

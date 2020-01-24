@@ -21,7 +21,7 @@ const HomePage = props => {
             <div>
               <div className="wineName">
                 <table>
-                  <thead>
+                  <thead className="wineHeader">
                     <th>Name</th>
                     <th>Region</th>
                     <th>Score</th>
@@ -57,7 +57,7 @@ const HomePage = props => {
           ) : (
             <div className="wineName">
               <table>
-                <thead>
+                <thead className="wineHeader">
                   <th>Name</th>
                   <th>Region</th>
                   <th>Score</th>
