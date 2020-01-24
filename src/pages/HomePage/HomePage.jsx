@@ -19,14 +19,29 @@ const HomePage = props => {
           <h1 className="wineTitle">Wine</h1>
           {wine.cheeses && wine.cheeses.length > 0 ? (
             <div>
-              <div className="wineName"> {wine.name}</div>
+              <div className="wineName">
+                <table>
+                  <thead>
+                    <th>Name</th>
+                    <th>Region</th>
+                    <th>Score</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{wine.name}</td>
+                      <td>{wine.regions}</td>
+                      <td>{wine.score}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
 
               <h2 className="cheeseTitle">Cheese</h2>
               <div className="cheeseList">
                 <table>
                   <thead className="cheeseTableHead">
-                    <th className="cheeseTableHead">Name</th>
-                    <th className="cheeseTableHead">Rating</th>
+                    <th className="cheeseTableHead">Type</th>
+                    <th className="cheeseTableHead">Notes</th>
                   </thead>
                   {wine.cheeses.map(cheese => (
                     <tbody>
@@ -40,7 +55,22 @@ const HomePage = props => {
               </div>
             </div>
           ) : (
-            <div className="wineName">{wine.name}</div>
+            <div className="wineName">
+              <table>
+                <thead>
+                  <th>Name</th>
+                  <th>Region</th>
+                  <th>Score</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{wine.name}</td>
+                    <td>{wine.regions}</td>
+                    <td>{wine.score}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           )}
           <form
             className="form-horizontal"
